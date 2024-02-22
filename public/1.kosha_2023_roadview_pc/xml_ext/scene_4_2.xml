@@ -1,0 +1,115 @@
+<krpano>
+    <include url='%CURRENTXML%/xml_ext/scene_layer_btn.xml' />
+    <events name='scene_4_2_event'
+        onnewpano='
+            delayedcall(1,
+                if(layer_btn_settings.autoplay,
+                    autoplay_indicator_start();
+                );
+            );
+            copy(layer[icon_count_text].html, calc("0 / 0"); );
+            check_all_scene();
+        '
+        onremovepano='stopdelayedcall(delayed_ani_1); pausesound(bgm);'
+    />
+    <include url="%CURRENTXML%/xml_ext/custom_skin.xml" />
+    
+    <action name='narration_start'>
+    </action>
+
+    <hotspot name='interactive_video'
+        style='style_drag_hotspot_distortion'
+        url.html5="%CURRENTXML%/plugins/videoplayer.js"
+        url.flash="%CURRENTXML%/plugins/videoplayer.swf"
+        videourl="%CURRENTXML%/assets/chapter_4/scene_4_4/interactive_video.mp4"
+        width='1310.9543392269265' height='prop' ath='-97.12332047302814' atv='17.276018013065908' rotate='2.095762004901059'
+        alpha='1'
+        scale='1'
+        enabled='false'
+        capture='false'
+        distorted="true"
+        pausedonstart="true"
+        loop="true"
+        volume="1.0"
+        directionalsound="true"
+        range="90.0"
+        rangefalloff="1.0"
+        outofrangevolume="0.0"
+        onvideoready=""
+        onvideoplay=""
+        onvideopaused="play();"
+        onvideocomplete=""
+        ondown='false'
+        onup='false'
+        onerror=""
+        visible="true"
+        onloaded='play();'
+    />
+
+    <hotspot name='moving_hotspot_1' url='%CURRENTXML%/assets/common/preview_btn.png'
+        style='st_moving_hotspot_2'
+        ath="-118.6180386869" atv="29.9755581926"
+        linkedscene='scene_4_1'
+        linkedlookat_h='3'
+        linkedlookat_v='0'
+    />
+
+    <hotspot name='icon_ext_9' 
+        style='st_icon_ext'
+        ath="-60.5407913221" atv="-1.4706311632"
+        idx='9'
+    />
+    <hotspot name='icon_ext_8' 
+        style='st_icon_ext'
+        ath="-108.6126918735" atv="12.4099342320"
+        idx='8'
+    />
+    <hotspot name='icon_ext_10' 
+        style='st_icon_ext'
+        ath="-56.6883150080" atv="-23.2565517936"
+        idx='10'
+    />
+    <hotspot name='icon_ext_11' 
+        style='st_icon_ext'
+        ath="-75.7970756571" atv="-17.3449901587"
+        idx='11'
+    />
+
+
+    <!-- <hotspot name='ahngel' url='%CURRENTXML%/assets/common/ahngel/ahngel.png'
+        style='st_ahngel|style_drag_hotspot_distortion'
+        scale="0.37"
+        alpha='1'
+        distorted='true'
+        enabled='false'
+        capture='false'
+        ath="-17.3050073278" atv="11.9748845988" rx="18.5" rz="0"
+    />
+    <hotspot name='ahngel_btn' url='%CURRENTXML%/assets/common/ahngel/ahngel_btn.png'
+        style='st_ahngel|style_drag_hotspot_distortion'
+        scale="0.37"
+        alpha='1'
+        distorted='true'
+        enabled='true'
+        capture='false'
+        flag='false'
+        ath="-17.8520891910" atv="-5.6159993953"
+        crop='0|250|557|250'
+        frames='1' framewidth='557' frameheight='250' frame='0'
+        linkedcount='5'
+        linkedhotspot='ahngel_x_btn'
+        onloaded='animation_1();'
+    />
+    <hotspot name='ahngel_x_btn' url='%CURRENTXML%/assets/common/ahngel/ahngel_x_btn.png'
+        style='st_ahngel|style_drag_hotspot_distortion'
+        scale="0.37"
+        alpha='0' autoalpha='1'
+        ath="-17.8520891910" atv="-5.6159993953"
+        distorted='true'
+        enabled='false'
+        capture='false'
+        onclick.addevent='
+            callwith(hotspot[ahngel_btn], onclick);
+        '
+    /> -->
+</krpano>

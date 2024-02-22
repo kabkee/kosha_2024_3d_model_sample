@@ -1,0 +1,88 @@
+<krpano>
+    <include url='%CURRENTXML%/xml_ext/scene_layer_btn.xml' />
+    <events name='scene_6_2_event'
+        onnewpano='
+            delayedcall(1,
+                if(layer_btn_settings.autoplay,
+                    autoplay_indicator_start();
+                );
+            );
+            copy(layer[icon_count_text].html, calc("0 / 0"); );
+            check_all_scene();
+        '
+        onremovepano='stopdelayedcall(delayed_ani_1); pausesound(bgm);'
+    />
+    <include url="%CURRENTXML%/xml_ext/custom_skin.xml" />
+    
+    <action name='narration_start'>
+    </action>
+
+    <hotspot name='interactive_video'
+        style='style_drag_hotspot_distortion'
+        url.html5="%CURRENTXML%/plugins/videoplayer.js"
+        url.flash="%CURRENTXML%/plugins/videoplayer.swf"
+        videourl="%CURRENTXML%/assets/chapter_6/scene_6_2/interactive_video.mp4"
+        width='1916.1212602637918' height='prop' ath='-13.743518599463673' atv='-4.937113602054316' rotate='0.4475292662781924'
+        alpha='1'
+        enabled='false'
+        capture='false'
+        distorted="true"
+        pausedonstart="true"
+        loop="true"
+        volume="1.0"
+        directionalsound="true"
+        range="90.0"
+        rangefalloff="1.0"
+        outofrangevolume="0.0"
+        onvideoready=""
+        onvideoplay=""
+        onvideopaused="play();"
+        onvideocomplete=""
+        ondown='false'
+        onup='false'
+        onerror=""
+        zorder="0"
+        visible="true"
+        onloaded='play(); '
+    />
+
+    <hotspot name='moving_hotspot_1' 
+        style='st_moving_hotspot'
+        ath="26.1241126887" atv="18.7204336550"
+        linkedscene='scene_6_3'
+        linkedlookat_h=''
+        linkedlookat_v=''
+        onbig='stoptween(oy); tween(oy, -10, , ,onsmall(););'
+        onsmall='stoptween(oy); tween(oy, 0, , ,onbig(););'
+        onloaded='onbig();'
+    />
+
+    <hotspot name='moving_hotspot_2' 
+        style='st_moving_hotspot'
+        ath="-25.3195642607" atv="11.9242766437"
+        linkedscene='scene_6_1'
+        linkedlookat_h=''
+        linkedlookat_v=''
+    />
+
+    <hotspot name='icon_ext_26' 
+        style='st_icon_ext'
+        ath="-131.5355572264" atv="-3.6370518450"
+        idx='26'
+    />
+    <hotspot name='icon_ext_27' 
+        style='st_icon_ext'
+        ath="25.4978558570" atv="3.7411126851"
+        idx='27'
+    />
+    <hotspot name='icon_ext_28' 
+        style='st_icon_ext'
+        ath="4.9415388944" atv="-17.9166794156"
+        idx='28'
+    />
+    <hotspot name='icon_ext_32' 
+        style='st_icon_ext'
+        ath="-16.1032638137" atv="-6.7144799117"
+        idx='32'
+    />
+</krpano>

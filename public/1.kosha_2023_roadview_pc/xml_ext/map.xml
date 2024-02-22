@@ -1,0 +1,221 @@
+<!-- <krpano>
+    <style name='st_map'
+        keep='true'
+        alpha='0' autoalpha='1'
+        scale='0.3'
+        edge='rightbottom'
+        align='rightbottom'
+    />
+
+    <!-- <layer name='map_btn' url='%CURRENTXML%/assets/common/map_btn.png'
+        style='st_map'
+        alpha='1'
+        oy='-250'
+        onclick='
+            tween(layer[map_bg].alpha, 1, 0.5, linear);
+            tween(layer[map].alpha, 1, 0.3, linear);
+            tween(layer[map_left_btn].alpha, 1, 0.3, linear);
+            tween(layer[map_right_btn].alpha, 1, 0.3, linear);
+        '
+    /> -->
+calc(ox, width * scale); calc(ox2, width * scale);
+    
+    <layer name='map_bg' url='%CURRENTXML%/assets/map/map_bg.png'
+        style='st_map'
+        keep='true'
+        handcursor='false'
+        oy='-150' ox='0'
+        ox2=''
+    />
+
+    <layer name='map_close_btn'
+        keep='true'
+        parent='map_bg'
+        type='container'
+        bgalpha='1' alpha='0'
+        bgcapture='true'
+        bgcolor='0xffffff'
+        width='28' height='255'
+        edge='rightbottom'
+        align='rightbottom'
+        oy='-5' ox='-492'
+        linkedlayer1='map'
+        linkedlayer2='map_bg'
+        linkedlayer3='map_left_btn'
+        linkedlayer4='map_right_btn'
+        onclick='
+            tween(layer[get(linkedlayer1)].alpha, 0);
+            tween(layer[get(linkedlayer2)].alpha, 0);
+            tween(layer[get(linkedlayer3)].alpha, 0);
+            tween(layer[get(linkedlayer4)].alpha, 0);
+        '
+    />
+
+    <layer name='map' 
+        url='%CURRENTXML%/assets/map/2-1.png'
+        url_2_1='%CURRENTXML%/assets/map/2-1.png' url_2_2='%CURRENTXML%/assets/map/2-2.png' url_2_3='%CURRENTXML%/assets/map/2-3.png' url_3_1='%CURRENTXML%/assets/map/3-1.png' 
+        url_3_2='%CURRENTXML%/assets/map/3-2.png' url_3_3='%CURRENTXML%/assets/map/3-3.png' url_4_1='%CURRENTXML%/assets/map/4-1.png' url_4_2='%CURRENTXML%/assets/map/4-2.png' 
+        url_4_3='%CURRENTXML%/assets/map/4-3.png' url_5_1='%CURRENTXML%/assets/map/5-1.png' url_5_2='%CURRENTXML%/assets/map/5-2.png' url_5_3='%CURRENTXML%/assets/map/5-3.png' 
+        url_6_1='%CURRENTXML%/assets/map/6-1.png' url_6_2='%CURRENTXML%/assets/map/6-2.png' url_6_3='%CURRENTXML%/assets/map/6-3.png' url_7_1='%CURRENTXML%/assets/map/7-1.png' 
+        url_7_2='%CURRENTXML%/assets/map/7-2.png' url_7_3='%CURRENTXML%/assets/map/7-3.png' url_8_1='%CURRENTXML%/assets/map/8-1.png' url_8_2='%CURRENTXML%/assets/map/8-2.png' 
+        url_8_3='%CURRENTXML%/assets/map/8-3.png' url_9_1='%CURRENTXML%/assets/map/9-1.png' url_9_2='%CURRENTXML%/assets/map/9-2.png' url_9_3='%CURRENTXML%/assets/map/9-3.png'
+        style='st_map'
+        parent='map_bg'
+        handcursor='false'
+        oy='-16' ox=''
+        
+        onloaded='
+            
+        '
+    />
+    <action name='setting_map'>
+        if(layer[map].url == '%CURRENTXML%/assets/map/2-1.png',
+            set(layer[map_spot_1].alpha, 1); set(layer[map_spot_2].alpha, 1); set(layer[map_spot_3].alpha, 1); set(layer[map_spot_4].alpha, 1);
+            set(layer[map_spot_5].alpha, 1); set(layer[map_spot_6].alpha, 1); set(layer[map_spot_7].alpha, 1); set(layer[map_spot_8].alpha, 0);
+            set(layer[map_spot_9].alpha, 0);
+            copy(layer[map_spot_5].ox, layer[map_spot_5].oox); copy(layer[map_spot_5].oy, layer[map_spot_5].ooy); copy(layer[map_spot_6].ox, layer[map_spot_6].oox);
+            copy(layer[map_spot_6].oy, layer[map_spot_6].ooy); copy(layer[map_spot_7].ox, layer[map_spot_7].oox); copy(layer[map_spot_7].oy, layer[map_spot_7].ooy);
+        ,
+        layer[map].url == '%CURRENTXML%/assets/map/2-2.png',
+            set(layer[map_spot_1].alpha, 0); set(layer[map_spot_2].alpha, 0); set(layer[map_spot_3].alpha, 0); set(layer[map_spot_4].alpha, 0);
+            set(layer[map_spot_5].alpha, 1); set(layer[map_spot_6].alpha, 1); set(layer[map_spot_7].alpha, 1);set(layer[map_spot_8].alpha, 1);
+            set(layer[map_spot_9].alpha, 1);
+            copy(layer[map_spot_5].ox, layer[map_spot_5].cox); copy(layer[map_spot_5].oy, layer[map_spot_5].coy); copy(layer[map_spot_6].ox, layer[map_spot_6].cox);
+            copy(layer[map_spot_6].oy, layer[map_spot_6].coy); copy(layer[map_spot_7].ox, layer[map_spot_7].cox); copy(layer[map_spot_7].oy, layer[map_spot_7].coy);
+        ,
+        layer[map].url == '%CURRENTXML%/assets/map/2-3.png',
+            set(layer[map_spot_1].alpha, 0); set(layer[map_spot_2].alpha, 0); set(layer[map_spot_3].alpha, 0); set(layer[map_spot_4].alpha, 0);
+            set(layer[map_spot_5].alpha, 0); set(layer[map_spot_6].alpha, 0); set(layer[map_spot_7].alpha, 0); set(layer[map_spot_8].alpha, 0);
+            set(layer[map_spot_9].alpha, 0);
+        );
+
+        if(layer[map].url == '%CURRENTXML%/assets/map/3-1.png' OR layer[map].url == '%CURRENTXML%/assets/map/3-3.png',
+            set(layer[map_spot_1].alpha, 0); set(layer[map_spot_2].alpha, 0); set(layer[map_spot_3].alpha, 0); set(layer[map_spot_4].alpha, 0);
+            set(layer[map_spot_5].alpha, 0); set(layer[map_spot_6].alpha, 0);
+        , layer[map].url == '%CURRENTXML%/assets/map/3-2.png',
+            set(layer[map_spot_1].alpha, 1); set(layer[map_spot_2].alpha, 1); set(layer[map_spot_3].alpha, 1); set(layer[map_spot_4].alpha, 1);
+            set(layer[map_spot_5].alpha, 1); set(layer[map_spot_6].alpha, 1);
+        );
+
+        if(layer[map].url == '%CURRENTXML%/assets/map/4-1.png' OR layer[map].url == '%CURRENTXML%/assets/map/4-3.png',
+            set(layer[map_spot_1].alpha, 0); set(layer[map_spot_2].alpha, 0); set(layer[map_spot_3].alpha, 0); set(layer[map_spot_4].alpha, 0);
+        , layer[map].url == '%CURRENTXML%/assets/map/4-2.png',
+            set(layer[map_spot_1].alpha, 1); set(layer[map_spot_2].alpha, 1); set(layer[map_spot_3].alpha, 1); set(layer[map_spot_4].alpha, 1);
+        );
+
+        if(layer[map].url == '%CURRENTXML%/assets/map/5-1.png' OR layer[map].url == '%CURRENTXML%/assets/map/5-2.png',
+            set(layer[map_spot_1].alpha, 0); set(layer[map_spot_2].alpha, 0); set(layer[map_spot_3].alpha, 0); set(layer[map_spot_4].alpha, 0);
+        , layer[map].url == '%CURRENTXML%/assets/map/5-3.png',
+            set(layer[map_spot_1].alpha, 1); set(layer[map_spot_2].alpha, 1); set(layer[map_spot_3].alpha, 1); set(layer[map_spot_4].alpha, 1);
+        );
+
+        if(layer[map].url == '%CURRENTXML%/assets/map/6-1.png' OR layer[map].url == '%CURRENTXML%/assets/map/6-2.png',
+            set(layer[map_spot_1].alpha, 0); set(layer[map_spot_2].alpha, 0); set(layer[map_spot_3].alpha, 0); set(layer[map_spot_4].alpha, 0);
+        , layer[map].url == '%CURRENTXML%/assets/map/6-3.png',
+            set(layer[map_spot_1].alpha, 1); set(layer[map_spot_2].alpha, 1); set(layer[map_spot_3].alpha, 1); set(layer[map_spot_4].alpha, 1);
+        );
+
+        if(layer[map].url == '%CURRENTXML%/assets/map/7-1.png' OR layer[map].url == '%CURRENTXML%/assets/map/7-2.png',
+            set(layer[map_spot_1].alpha, 0); set(layer[map_spot_2].alpha, 0); set(layer[map_spot_3].alpha, 0);
+        , layer[map].url == '%CURRENTXML%/assets/map/7-3.png',
+            set(layer[map_spot_1].alpha, 1); set(layer[map_spot_2].alpha, 1); set(layer[map_spot_3].alpha, 1);
+        );
+
+        if(layer[map].url == '%CURRENTXML%/assets/map/8-1.png' OR layer[map].url == '%CURRENTXML%/assets/map/8-2.png',
+            set(layer[map_spot_1].alpha, 0); set(layer[map_spot_2].alpha, 0); set(layer[map_spot_3].alpha, 0);
+        , layer[map].url == '%CURRENTXML%/assets/map/8-3.png',
+            set(layer[map_spot_1].alpha, 1); set(layer[map_spot_2].alpha, 1); set(layer[map_spot_3].alpha, 1);
+        );
+
+        if(layer[map].url == '%CURRENTXML%/assets/map/9-1.png' OR layer[map].url == '%CURRENTXML%/assets/map/9-2.png',
+            set(layer[map_spot_1].alpha, 0);
+        , layer[map].url == '%CURRENTXML%/assets/map/9-3.png',
+            set(layer[map_spot_1].alpha, 1);
+        );
+    </action>
+
+    <action name='auto_change_map' scope='local' args='var1'>
+        if(caller.name == map_left_btn,
+            if(caller.step LT 3,
+                inc(caller.step);
+                txtadd(ly_map_url1, '%CURRENTXML%/assets/map/', get(caller.chapter), '-', get(caller.step), '.png');
+                set(layer[map].url, get(ly_map_url1));
+                copy(layer[map_right_btn].step, caller.step);
+                setting_map();
+                trace("caller.step :: ", caller.step);
+                trace("ly_map_url :: ", get(ly_map_url1));
+            );
+        );
+        if(caller.name == map_right_btn,
+            if(caller.step GT 1,
+                dec(caller.step);
+                txtadd(ly_map_url2, '%CURRENTXML%/assets/map/', get(caller.chapter), '-', get(caller.step), '.png');
+                set(layer[map].url, get(ly_map_url2));
+                copy(layer[map_left_btn].step, caller.step);
+                setting_map();
+                trace("caller.step :: ", caller.step);
+                trace("ly_map_url :: ", get(ly_map_url2));
+            );
+        );
+    </action>
+
+    <layer name='map_left_btn' url='%CURRENTXML%/assets/map/map_left_btn.png'
+        style='st_map'
+        parent='map_bg'
+        oy='-110' ox='-423' ox2=''
+        step='1'
+        chapter='2'
+        onclick='auto_change_map();'
+    />
+    <layer name='map_right_btn' url='%CURRENTXML%/assets/map/map_right_btn.png'
+        style='st_map'
+        parent='map_bg'
+        oy='-110' ox='5' ox2=''
+        step=''
+        chapter='2'
+        onclick='auto_change_map();'
+    />
+
+    <!-- 바라보는 방향을 알려주는 레이어 -->
+    <layer name='radar' url='%CURRENTXML%/plugins/radar_source.js'
+        keep='true'
+        align="center"
+        edge="center"
+        scale="0.23"
+        heading="0.0"
+        oy='14'
+        headingoffset="00.0"
+        fillcolor="0xffffff"
+        fillalpha="0.7"
+        linewidth="1"
+        linecolor="0xffffff"
+        linealpha="1"
+        enabled='false'
+        zorder="9"
+    />
+
+    <!-- 지도 내에 위치 나타내는 아이콘 스타일 -->
+    <style name='st_map_spot' 
+        url='%CURRENTXML%/assets/map/map_spot_1.png'
+        ourl='%CURRENTXML%/assets/map/map_spot_1.png'
+        curl='%CURRENTXML%/assets/map/map_spot_2.png'
+        parent='map_bg'
+        enabled='true'
+        capture='false'
+        handcursor='true'
+        edge='bottom'
+        align='center'
+        alpha='0' autoalpha='1'
+        scale='0.56'
+        keep='false'
+        zorder="10"
+        onclick='loadscene(get(linkedscene), , ,COLORBLEND(0.5, 0x000000, linear));'
+        onloaded='
+            if(xml.scene == get(linkedscene),
+                copy(url, curl);
+            ,
+                copy(url, ourl);
+            );
+        '
+    />
+</krpano> -->

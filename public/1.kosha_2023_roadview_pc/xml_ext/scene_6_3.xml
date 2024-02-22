@@ -1,0 +1,74 @@
+<krpano>
+    <include url='%CURRENTXML%/xml_ext/scene_layer_btn.xml' />
+    <events name='scene_6_3_event'
+        onnewpano='
+            delayedcall(scene_6_1_delay, 5,
+                insert_script(script_last_chapter);
+                narration_start();
+                play_script();
+                tween(hotspot[next_chapter_btn].alpha, 1);
+            );
+            copy(layer[icon_count_text].html, calc("0 / 0"); );
+            check_all_scene();
+        '
+        onremovepano='stopdelayedcall(delayed_ani_1); stopdelayedcall(scene_6_1_delay); pausesound(bgm); action_stoptween(); stop_script();'
+    />
+    <include url="%CURRENTXML%/xml_ext/custom_skin.xml" />
+    
+    <array name='script_last_chapter'>
+        <line name='line_0' text='모두 확인하였으면, 다음 챕터로 이동 버튼을 눌러주세요.' />
+    </array>
+
+    <sound_setting nosound='true' />
+
+    <action name='narration_start'>
+        if(!sound[narration] OR (sound[narration] AND sound[narration].paused) ,
+            if(!layer_btn_settings.bgmpaused,
+                playsound(narration, get(sound_source[narration_last_chapter].url), false, 1,
+                    bgm_volume_control();
+                    if(layer_btn_settings.autoplay,
+                        autoplay_indicator_start();
+                    );
+                );
+            ,
+                if(layer_btn_settings.autoplay,
+                    autoplay_indicator_start();
+                );
+            );
+        );
+    </action>
+
+    <hotspot name='moving_hotspot_1' 
+        style='st_moving_hotspot'
+        ath="-137.3642640923" atv="17.2963332449"
+        linkedscene='scene_6_2'
+        linkedlookat_h=''
+        linkedlookat_v=''
+    />
+
+    <hotspot name='next_chapter_btn' url='%CURRENTXML%/assets/common/next_chapter_btn.png'
+        style='st_next_chapter_btn|style_drag_hotspot_distortion'
+        ath="-32.3122957643" atv="9.4661478624" 
+    />
+
+    <hotspot name='icon_ext_29' 
+        style='st_icon_ext'
+        ath="-101.5992964816" atv="13.6957031414"
+        idx='29'
+    />
+    <hotspot name='icon_ext_30' 
+        style='st_icon_ext'
+        ath="44.2937688833" atv="-0.0296284789"
+        idx='30'
+    />
+    <hotspot name='icon_ext_31' 
+        style='st_icon_ext'
+        ath="9.7089316124" atv="18.5650367397"
+        idx='31'
+    />
+    <hotspot name='icon_ext_47' 
+        style='st_icon_ext'
+        ath="15.6953167303" atv="-5.6899093919"
+        idx='47'
+    />
+</krpano>

@@ -1,0 +1,99 @@
+<krpano>
+    <include url='%CURRENTXML%/xml_ext/scene_layer_btn.xml' />
+    <events name='scene_7_1_event'
+        onnewpano='
+            insert_script(script_7);
+            delayedcall(0.5,
+                narration_start();
+                play_script();
+            );
+            copy(layer[icon_count_text].html, calc("0 / 0"); );
+            check_all_scene();
+        '
+        onremovepano='stopdelayedcall(delayed_ani_1); pausesound(bgm); action_stoptween(); stop_script();'
+    />
+    <include url="%CURRENTXML%/xml_ext/custom_skin.xml" />
+    
+    <array name='script_7'>
+        <line name='line_0' text='관로를 내려 굴착면 아래 설치 시에도' />
+        <line name='line_1' text='붕괴, 부딪힘, 추락, 깔림 등' />
+        <line name='line_2' text='다양한 재해 사례가 발생할 수 있습니다. 어떤' />
+        <line name='line_3' text='유해·위험요인이 있는지 확인해보세요.' />
+    </array>
+
+    <sound_setting nosound='true' />
+    
+    <action name='narration_start'>
+        if(!sound[narration] OR (sound[narration] AND sound[narration].paused) ,
+            if(!layer_btn_settings.bgmpaused,
+                playsound(narration, get(sound_source[narration_7].url), false, 1,
+                    bgm_volume_control();
+                    if(layer_btn_settings.autoplay,
+                        autoplay_indicator_start();
+                    );
+                );
+            ,
+                if(layer_btn_settings.autoplay,
+                    autoplay_indicator_start();
+                );
+            );
+        );
+    </action>
+
+
+    <hotspot name='interactive_video'
+        style='style_drag_hotspot_distortion'
+        url.html5="%CURRENTXML%/plugins/videoplayer.js"
+        url.flash="%CURRENTXML%/plugins/videoplayer.swf"
+        videourl="%CURRENTXML%/assets/chapter_7/scene_7_1/interactive_video.mp4"
+        width='1188.1736023321973' height='prop' ath='28.19672212729858' atv='-2.7393961496710064' rotate='0.12267717827064524'
+        alpha='1'
+        enabled='false'
+        capture='false'
+        distorted="true"
+        pausedonstart="true"
+        loop="true"
+        volume="1.0"
+        directionalsound="true"
+        range="90.0"
+        rangefalloff="1.0"
+        outofrangevolume="0.0"
+        onvideoready=""
+        onvideoplay=""
+        onvideopaused="play();"
+        onvideocomplete=""
+        ondown='false'
+        onup='false'
+        onerror=""
+        zorder="0"
+        visible="true"
+        onloaded='play(); '
+    />
+
+    <hotspot name='moving_hotspot_1' 
+        style='st_moving_hotspot'
+        ath="161.3042288097" atv="15.1751800214"
+        linkedscene='scene_7_2'
+        linkedlookat_h=''
+        linkedlookat_v=''
+        onbig='stoptween(oy); tween(oy, -10, , ,onsmall(););'
+        onsmall='stoptween(oy); tween(oy, 0, , ,onbig(););'
+        onloaded='onbig();'
+    />
+
+    <hotspot name='icon_ext_33' 
+        style='st_icon_ext'
+        ath="10.4514842117" atv="-19.4923746917"
+        idx='33'
+    />
+    <hotspot name='icon_ext_34' 
+        style='st_icon_ext'
+        ath="-7.7842277382" atv="6.3872862177"
+        idx='34'
+    />
+    <hotspot name='icon_ext_35' 
+        style='st_icon_ext'
+        ath="39.2388155094" atv="-4.1401075903" 
+        idx='35'
+    />
+</krpano>

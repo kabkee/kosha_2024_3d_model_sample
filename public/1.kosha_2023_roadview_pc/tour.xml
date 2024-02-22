@@ -1,0 +1,280 @@
+﻿<krpano version="1.20.11" title="Virtual Tour">
+
+    <include url="%CURRENTXML%/skin/vtourskin.xml" />
+    <!-- <include url="%CURRENTXML%/ext/sound.xml" />
+    <include url="%CURRENTXML%/ext/animation.xml" />
+    <include url="%CURRENTXML%/xml_ext/common.xml" /> -->
+    <!-- <include url="%CURRENTXML%/xml_ext/map.xml" /> -->
+    <!-- <include url="%CURRENTXML%/xml_components/style_tour.xml" />
+    <include url="%CURRENTXML%/plugins/showtext.xml" />
+    <include url="%CURRENTXML%/xml_ext/help_slide.xml" /> -->
+
+    <!-- <include url="%CURRENTXML%/xml_components/tour_addon.xml" />
+    <include url="%CURRENTXML%/xml_components/tour_ext.xml" />
+    <include url="%CURRENTXML%/xml_components/viewcopy.xml" /> -->
+
+    <!-- customize skin settings: maps, gyro, webvr, thumbnails, tooltips, layout, design, ... -->
+    <skin_settings maps="false"
+        maps_type="google"
+        maps_bing_api_key=""
+        maps_google_api_key=""
+        maps_zoombuttons="false"
+        maps_loadonfirstuse="true"
+        gyro="true"
+        gyro_keeplookingdirection="false"
+        webvr="true"
+        webvr_keeplookingdirection="true"
+        webvr_prev_next_hotspots="true"
+        autotour="false"
+        littleplanetintro="false"
+        followmousecontrol="false"
+        title="true"
+        thumbs="true"
+        thumbs_width="120" thumbs_height="80" thumbs_padding="10" thumbs_crop="0|40|240|160"
+        thumbs_opened="false"
+        thumbs_text="true"
+        thumbs_dragging="true"
+        thumbs_onhoverscrolling="false"
+        thumbs_scrollbuttons="false"
+        thumbs_scrollindicator="false"
+        thumbs_loop="false"
+        tooltips_buttons="false"
+        tooltips_thumbs="true"
+        tooltips_hotspots="false"
+        tooltips_mapspots="false"
+        deeplinking="false"
+        loadscene_flags="MERGE"
+        loadscene_blend="COLORBLEND(0.5, 0x000000, linear)"
+        loadscene_blend_prev="COLORBLEND(0.5, 0x000000, linear)"
+        loadscene_blend_next="COLORBLEND(0.5, 0x000000, linear)"
+        loadingtext=""
+        layout_width=""
+        layout_maxwidth="814"
+        controlbar_width="-24"
+        controlbar_height="40"
+        controlbar_offset="20"
+        controlbar_offset_closed="-40"
+        controlbar_overlap.no-fractionalscaling="10"
+        controlbar_overlap.fractionalscaling="0"
+        design_skin_images="vtourskin.png"
+        design_bgcolor="0x2D3E50"
+        design_bgalpha="0.8"
+        design_bgborder="0"
+        design_bgroundedge="1"
+        design_bgshadow="0 4 10 0x000000 0.3"
+        design_thumbborder_bgborder="3 0xFFFFFF 1.0"
+        design_thumbborder_padding="2"
+        design_thumbborder_bgroundedge="0"
+        design_text_css="color:#FFFFFF; font-family:Arial;"
+        design_text_shadow="1"
+    />
+
+    <!--
+	    For an alternative skin design either change the <skin_settings> values 
+	    from above or optionally include one of the predefined designs from below.
+	-->
+    <!-- <include url="skin/vtourskin_design_flat_light.xml"  /> -->
+    <!-- <include url="skin/vtourskin_design_glass.xml"       /> -->
+    <!-- <include url="skin/vtourskin_design_ultra_light.xml" /> -->
+    <!-- <include url="skin/vtourskin_design_117.xml"         /> -->
+    <!-- <include url="skin/vtourskin_design_117round.xml"    /> -->
+    <!-- <include url="skin/vtourskin_design_black.xml"       /> -->
+
+    <!-- <events name='events_layer_btn' keep='true' onnewpano='
+		callwith(layer[page_text_1], onloaded);
+		callwith(layer[page_text_2], onloaded);
+		callwith(layer[page_text_3], onloaded);
+		callwith(layer[page_text_4], onloaded);
+		callwith(layer[page_text_5], onloaded);
+		callwith(layer[page_text_6], onloaded);
+		callwith(layer[page_text_7], onloaded);
+		callwith(layer[page_text_8], onloaded);
+		callwith(layer[page_text_9], onloaded);
+	' /> -->
+    <layer_btn_settings infomation='true' delay_autoplay='10' delay_autoplay_org='10'
+        autoplay='false' bgmpaused='false' scriptpaused='false' />
+    <events name='events_layer_btn' keep='true' onnewpano='loadimgs(); help_slide_init();'
+        onremovepano='
+			if(layer[settings_bg].alpha,
+                tween(layer[settings_bg].alpha, 0);
+            );
+			if(!layer_btn_settings.infomation, 
+				set(layer_btn_settings.infomation, true);
+			);
+		'
+    />
+
+    <events name='events_main' keep='true'
+        onnewpano='
+		callwith(layer[page_text], loadtxt);
+        if(scene[get(xml.scene)].index == 0 OR scene[get(xml.scene)].index == calc(scene.count -1),
+            set(layer[skin_layer].width, 0);
+        ,
+            copy(layer[skin_layer].width, skin_settings.layout_width);
+        );
+    '
+    />
+
+    <events name='keep_controller'
+        keep='true'
+        onnewpano='keep_controll_action(); keep_controll_action_3();'
+    />
+
+    <action name='keep_controll_action'>
+        if(scene[get(xml.scene)].noautoplay,
+        set(layer[autoplay_toggle_btn].enabled, false);
+        ,
+        set(layer[autoplay_toggle_btn].enabled, true);
+        );
+        if(scene[get(xml.scene)].noshow == true,
+        set(layer[evaluation_btn].alpha, 0);
+        set(layer[custom_skin_bg].alpha, 0);
+        set(layer[custom_skin_location].alpha, 0);
+        set(layer[map_btn].alpha, 0);
+        set(layer[radar].alpha, 0);
+        set(layer[page_text].alpha, 0);
+        set(layer[pano_name].alpha, 0);
+        set(layer[hit_box].alpha, 0);
+        set(layer[icon_count_bg].alpha, 0);
+        set(layer[icon_count_text].alpha, 0);
+        ,
+        set(layer[evaluation_btn].alpha, 1);
+        set(layer[custom_skin_bg].alpha, 1);
+        set(layer[custom_skin_location].alpha, 1);
+        set(layer[page_text].alpha, 1);
+        set(layer[pano_name].alpha, 1);
+        set(layer[hit_box].alpha, 1);
+        );
+        if(scene[get(xml.scene)].nonadir == true,
+        set(hotspot[nadir_logo].alpha, 0);
+        ,
+        set(hotspot[nadir_logo].alpha, 1);
+        );
+    </action>
+
+    <!-- krpano 버전 동적으로 위험요인 없는 scene에서의 위험요인 표시 레이어 안보이게 하기 -->
+    <action name='keep_controll_action_3'>
+        set(isstyle, false);
+
+        for(set(i,0), i LT hotspot.count, inc(i),
+        if(hotspot[get(i)].style == 'st_icon_ext',
+        set(isstyle, true);
+        );
+        );
+
+        if(!isstyle,
+        set(layer[icon_count_bg].alpha, 0);
+        set(layer[icon_count_text].alpha, 0);
+        ,
+        set(layer[icon_count_bg].alpha, 1);
+        set(layer[icon_count_text].alpha, 1);
+        );
+    </action>
+
+    <!-- javascript 버전 동적으로 위험요인 없는 scene에서의 위험요인 표시 레이어 안보이게 하기 -->
+    <action name='keep_controll_action_2' type='Javascript'>
+		<![CDATA[
+			var hotspotCount = krpano.get('hotspot.count');
+			var hasStIconExtHotspot = false;
+
+			// 핫스팟을 확인하고 'st_icon_ext' 스타일을 가진 핫스팟이 존재할 경우 alpha 값을 변경
+			for (var i = 0; i < hotspotCount; i++) {
+				var style = krpano.get('hotspot[' + i + '].style');
+				if (style === 'st_icon_ext') {
+					hasStIconExtHotspot = true;
+					break; // 'st_icon_ext' 스타일을 가진 핫스팟이 있으면 루프를 종료합니다.
+				}
+			}
+
+			// 'st_icon_ext' 스타일을 가진 핫스팟이 없는 경우
+			if (!hasStIconExtHotspot) {
+				krpano.set('layer[icon_count_bg].alpha', 0);
+				krpano.set('layer[icon_count_text].alpha', 0);
+			} else {
+				// 'st_icon_ext' 스타일을 가진 핫스팟이 있으면 alpha 값을 1로 설정합니다.
+				krpano.set('layer[icon_count_bg].alpha', 1);
+				krpano.set('layer[icon_count_text].alpha', 1);
+			}
+		]]>
+	</action>
+
+    <hotspot name='nadir_logo' keep='true' capture='false' enabled='false'
+        url='%CURRENTXML%/assets/common/nadir_logo.png' distorted='true' atv='90' zorder='9' />
+
+    <scene name="scene_intro" noautoplay='true' title="메인 화면" noshow='true' nocount='true'
+        keep_layer='true' onstart="" havevrimage.mobilevr="false" havevrimage.no-mobilevr="true"
+        thumburl="%CURRENTXML%/assets/intro/intro_thumb.png" lat="" lng="" heading="">
+
+        <view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="100" maxpixelzoom="2.0" fovmin="70"
+        fovmax="140" limitview="auto" />
+        
+        <preview type='grid(cube)' />
+        <!-- <include url='%CURRENTXML%/xml_ext/scene_intro.xml' /> -->
+
+        <hotspot name="listbtn_1"
+            type='text'
+            html='Iframe Html TEST'
+            capture='false'
+            ath="-30" atv="0"
+            scale="1"
+            distorted='true'
+            roundedge='10'
+            padding='10'
+            css='font-size: 2rem;'
+            ry="0"
+            rx="0"
+            rz="0"
+            oy="0"
+            ox="0"
+            edge='center'
+            align='center'
+            onclick="jscall(window.App.toggleIframe())"
+        />
+        
+        <hotspot name="listbtn_2"
+            type='text'
+            html='Distorted TEST'
+            capture='false'
+            ath="30" atv="0"
+            scale="1"
+            distorted='true'
+            roundedge='10'
+            padding='10'
+            css='font-size: 2rem;'
+            ry="0"
+            rx="0"
+            rz="0"
+            oy="0"
+            ox="0"
+            edge='center'
+            align='center'
+        />
+
+        <hotspot name="iframe"
+         url="%CURRENTXML%/assets/etc/white_80_percent.png"
+         ath="30" atv="0"
+         oy='-200'
+         distorted="true"
+         onloaded="add_iframe('#/modelViewer?modelPath=models/005_scene.gltf', 500, 300);"
+         renderer='css3d'
+         />
+
+        <action name="add_iframe" type="Javascript">
+            var iframe = document.createElement("iframe");
+            iframe.style.position = "absolute";
+            iframe.style.left = 0;
+            iframe.style.top = 0;
+            iframe.style.width = "100%";
+            iframe.style.height = "100%";
+            iframe.style.border = 0;
+            iframe.src = args[1];
+            caller.registercontentsize(args[2], args[3]);
+            caller.sprite.appendChild(iframe);
+        </action>
+
+        <events
+            onviewchange='jscall(window.App.onViewChange())'
+        />
+    </scene>
+
+</krpano>

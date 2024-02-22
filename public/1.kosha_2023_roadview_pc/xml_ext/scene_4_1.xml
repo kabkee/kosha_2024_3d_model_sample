@@ -1,0 +1,83 @@
+<krpano>
+    <include url='%CURRENTXML%/xml_ext/scene_layer_btn.xml' />
+    <events name='scene_4_1_event'
+        onnewpano='
+            insert_script(script_4);
+            delayedcall(0.5,
+                narration_start();
+                play_script();
+            );
+            copy(layer[icon_count_text].html, calc("0 / 0"); );
+            check_all_scene();
+        '
+        onremovepano='stopdelayedcall(delayed_ani_1); pausesound(bgm); action_stoptween(); stop_script();'
+    />
+    <include url="%CURRENTXML%/xml_ext/custom_skin.xml" />
+    
+    <array name='script_4'>
+        <line name='line_0' text='반입한 자재는 평탄한 곳에 적재하고' />
+        <line name='line_1' text='지지대를 설치해야 합니다. 어떤 유해·위험요인이' />
+        <line name='line_2' text='있을지 확인해볼까요?' />
+    </array>
+
+    <sound_setting nosound='true' />
+    
+    <action name='narration_start'>
+        if(!sound[narration] OR (sound[narration] AND sound[narration].paused) ,
+            if(!layer_btn_settings.bgmpaused,
+                playsound(narration, get(sound_source[narration_4].url), false, 1,
+                    bgm_volume_control();
+                    if(layer_btn_settings.autoplay,
+                        autoplay_indicator_start();
+                    );
+                );
+            ,
+                if(layer_btn_settings.autoplay,
+                    autoplay_indicator_start();
+                );
+            );
+        );
+    </action>
+
+    <hotspot name='moving_hotspot_1'
+        url='%CURRENTXML%/assets/common/work_btn.png'
+        style='style_drag_hotspot_distortion'
+        alpha='1'
+        scale='0.4'
+        distorted='true'
+        enabled='true'
+        capture='true'
+        zorder="99"
+        onover='tween(scale, 0.42, 0.2);'
+        onout='tween(scale, 0.4, 0.2);'
+        ath="3.1424741254" atv="5.2858806478"
+        linkedscene='scene_4_2'
+        linkedlookat_h=''
+        linkedlookat_v=''
+        onclick='
+            if(!layer_btn_settings.bgmpaused,
+                playsound(click, get(sound_source[click].url), false, 1,);
+            ); 
+            if(!caller.linkedlookat_h AND !caller.linkedlookat_v,
+                copy(global.linkedlookat_h, linkedlookat_h);
+                copy(global.linkedlookat_v, linkedlookat_v);
+            );
+            loadscene(get(linkedscene), , , blend(0.5));
+            lookat(get(global.linkedlookat_h), get(global.linkedlookat_v), get(global.linkedlookat_fov));
+            js(App.setIsRightSideShow(false));
+        '
+    />
+
+    <hotspot name='moving_hotspot_2' 
+        style='st_moving_hotspot'
+        ath="38.7892926861" atv="8.6465666612" 
+        linkedscene='scene_4_3'
+        linkedlookat_h='140'
+        linkedlookat_v=''
+        onbig='stoptween(oy); tween(oy, -10, , ,onsmall(););'
+        onsmall='stoptween(oy); tween(oy, 0, , ,onbig(););'
+        onloaded='onbig();'
+    />
+
+    
+</krpano>

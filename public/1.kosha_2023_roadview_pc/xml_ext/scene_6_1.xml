@@ -1,0 +1,63 @@
+<krpano>
+    <include url='%CURRENTXML%/xml_ext/scene_layer_btn.xml' />
+    <events name='scene_6_1_event'
+        onnewpano='
+            insert_script(script_6);
+            delayedcall(0.5,
+                narration_start();
+                play_script();
+            );
+            copy(layer[icon_count_text].html, calc("0 / 0"); );
+            check_all_scene();
+        '
+        onremovepano='stopdelayedcall(delayed_ani_1); pausesound(bgm); action_stoptween(); stop_script();'
+    />
+    <include url="%CURRENTXML%/xml_ext/custom_skin.xml" />
+
+    <array name='script_6'>
+        <line name='line_0' text='흙막이 가시설은 지반 굴착을 안전하게 하기' />
+        <line name='line_1' text='위한 것으로 지지 구조물을 설치하여 지반 붕괴를' />
+        <line name='line_2' text='막아주는 역할을 하고 있습니다. 흙막이 가시설' />
+        <line name='line_3' text='설치 시에는 어떤 위험들이 있을지 확인해보겠습니다.' />
+    </array>
+
+    <sound_setting nosound='true' />
+    
+    <action name='narration_start'>
+        if(!sound[narration] OR (sound[narration] AND sound[narration].paused) ,
+            if(!layer_btn_settings.bgmpaused,
+                playsound(narration, get(sound_source[narration_6].url), false, 1,
+                    bgm_volume_control();
+                    if(layer_btn_settings.autoplay,
+                        autoplay_indicator_start();
+                    );
+                );
+            ,
+                if(layer_btn_settings.autoplay,
+                    autoplay_indicator_start();
+                );
+            );
+        );
+    </action>
+
+    <hotspot name='moving_hotspot_1' 
+        style='st_moving_hotspot'
+        ath="85.8262030804" atv="21.7095544105"
+        linkedscene='scene_6_2'
+        linkedlookat_h=''
+        linkedlookat_v=''
+        onbig='stoptween(oy); tween(oy, -10, , ,onsmall(););'
+        onsmall='stoptween(oy); tween(oy, 0, , ,onbig(););'
+        onloaded='onbig();'
+    />
+    <hotspot name='icon_ext_24' 
+        style='st_icon_ext'
+        ath="-0.5332389038" atv="-16.9582333431"
+        idx='24'
+    />
+    <hotspot name='icon_ext_25' 
+        style='st_icon_ext'
+        ath="-23.9922217461" atv="18.3432302597"
+        idx='25'
+    />
+</krpano>

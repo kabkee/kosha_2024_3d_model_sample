@@ -1,0 +1,102 @@
+<krpano>
+    <include url='%CURRENTXML%/xml_ext/scene_layer_btn.xml' />
+    <events name='scene_8_1_event'
+        onnewpano='
+            insert_script(script_8);
+            delayedcall(0.5,
+                narration_start();
+                play_script();
+            );
+            copy(layer[icon_count_text].html, calc("0 / 0"); );
+            check_all_scene();
+        '
+        onremovepano='stopdelayedcall(delayed_ani_1); pausesound(bgm); action_stoptween(); stop_script();'
+    />
+    <include url="%CURRENTXML%/xml_ext/custom_skin.xml" />
+    
+    <array name='script_8'>
+        <line name='line_0' text='아래로 내린 관을 연결 중입니다. 볼트로' />
+        <line name='line_1' text='조립하거나 용접 등으로 연결 설치하는 과정에서' />
+        <line name='line_2' text='어떤 유해·위험요인이 있는지 확인해볼까요?' />
+    </array>
+
+    <sound_setting nosound='true' />
+    
+    <action name='narration_start'>
+        if(!sound[narration] OR (sound[narration] AND sound[narration].paused) ,
+            if(!layer_btn_settings.bgmpaused,
+                playsound(narration, get(sound_source[narration_8].url), false, 1,
+                    bgm_volume_control();
+                    if(layer_btn_settings.autoplay,
+                        autoplay_indicator_start();
+                    );
+                );
+            ,
+                if(layer_btn_settings.autoplay,
+                    autoplay_indicator_start();
+                );
+            );
+        );
+    </action>
+
+    <hotspot name='moving_hotspot_1'
+        url='%CURRENTXML%/assets/common/work_btn.png'
+        style='style_drag_hotspot_distortion'
+        alpha='1'
+        scale='0.4'
+        distorted='true'
+        enabled='true'
+        capture='true'
+        zorder="99"
+        onover='tween(scale, 0.42, 0.2);'
+        onout='tween(scale, 0.4, 0.2);'
+        ath="68.1555138899" atv="16.4330106451"
+        linkedscene='scene_8_2'
+        linkedlookat_h=''
+        linkedlookat_v=''
+        onclick='
+            if(!layer_btn_settings.bgmpaused,
+                playsound(click, get(sound_source[click].url), false, 1,);
+            ); 
+            if(!caller.linkedlookat_h AND !caller.linkedlookat_v,
+                copy(global.linkedlookat_h, linkedlookat_h);
+                copy(global.linkedlookat_v, linkedlookat_v);
+            );
+            loadscene(get(linkedscene), , , blend(0.5));
+            lookat(get(global.linkedlookat_h), get(global.linkedlookat_v), get(global.linkedlookat_fov));
+            js(App.setIsRightSideShow(false));
+        '
+    />
+
+    <hotspot name='moving_hotspot_2' 
+        style='st_moving_hotspot'
+        ath="176.2359786737" atv="-9.4005019807"
+        linkedscene='scene_8_3'
+        linkedlookat_h=''
+        linkedlookat_v=''
+        onbig='stoptween(oy); tween(oy, -10, , ,onsmall(););'
+        onsmall='stoptween(oy); tween(oy, 0, , ,onbig(););'
+        onloaded='onbig();'
+    />
+
+    <hotspot name='icon_ext_42' 
+        style='st_icon_ext'
+        ath="3.1440661757" atv="32.5738457601"
+        idx='42'
+    />
+    <hotspot name='icon_ext_43' 
+        style='st_icon_ext'
+        ath="30.0456715236" atv="0.8535315240"
+        idx='43'
+    />
+    <hotspot name='icon_ext_44' 
+        style='st_icon_ext'
+        ath="149.7986548190" atv="10.6094241445"
+        idx='44'
+    />
+    <hotspot name='icon_ext_45' 
+        style='st_icon_ext'
+        ath="5.8165926061" atv="-35.9546113270"
+        idx='45'
+    />
+</krpano>

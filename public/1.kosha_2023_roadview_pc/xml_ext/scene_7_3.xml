@@ -1,0 +1,92 @@
+<krpano>
+    <include url='%CURRENTXML%/xml_ext/scene_layer_btn.xml' />
+    <events name='scene_7_3_event'
+        onnewpano='
+            delayedcall(scene_7_1_delay, 0.5,
+                insert_script(script_last_chapter);
+                narration_start();
+                play_script();
+                tween(hotspot[next_chapter_btn].alpha, 1);
+            );
+            copy(layer[icon_count_text].html, calc("0 / 0"); );
+            check_all_scene();
+        '
+        onremovepano='stopdelayedcall(delayed_ani_1); stopdelayedcall(scene_7_1_delay); pausesound(bgm); action_stoptween(); stop_script();'
+    />
+    <include url="%CURRENTXML%/xml_ext/custom_skin.xml" />
+    
+    <array name='script_last_chapter'>
+        <line name='line_0' text='모두 확인하였으면, 다음 챕터로 이동 버튼을 눌러주세요.' />
+    </array>
+
+    <sound_setting nosound='true' />
+
+    <action name='narration_start'>
+        if(!sound[narration] OR (sound[narration] AND sound[narration].paused) ,
+            if(!layer_btn_settings.bgmpaused,
+                playsound(narration, get(sound_source[narration_last_chapter].url), false, 1,
+                    bgm_volume_control();
+                    if(layer_btn_settings.autoplay,
+                        autoplay_indicator_start();
+                    );
+                );
+            ,
+                if(layer_btn_settings.autoplay,
+                    autoplay_indicator_start();
+                );
+            );
+        );
+    </action>
+
+    <hotspot name='interactive_area_1' url='%CURRENTXML%/assets/chapter_7/scene_7_3/interactive_img_1.jpg'
+        width='811.7075885056483' height='prop' ath='22.698216205535925' atv='-0.5998745377939743' rotate='-1.2351375176827866'
+        alpha='0'
+        distorted='true'
+        enabled='false'
+        capture='false'
+        step='1'
+        onloaded='
+            delayedcall(delay_anime_interactive, 0.5,
+                anime_interactive();
+            );
+        '
+    />
+    <hotspot name='interactive_area_2' url='%CURRENTXML%/assets/chapter_7/scene_7_3/interactive_img_2.jpg'
+        width='811.7075885056483' height='prop' ath='22.698216205535925' atv='-0.5998745377939743' rotate='-1.2351375176827866'
+        alpha='0'
+        distorted='true'
+        enabled='false'
+        capture='false'
+    />
+    <hotspot name='interactive_area_3' url='%CURRENTXML%/assets/chapter_7/scene_7_3/interactive_img_3.jpg'
+        width='811.7075885056483' height='prop' ath='22.698216205535925' atv='-0.5998745377939743' rotate='-1.2351375176827866'
+        alpha='0'
+        distorted='true'
+        enabled='false'
+        capture='false'
+    />
+
+    <action name='anime_interactive' scope='local'>
+        txtadd(interactive_img, 'interactive_area_', get(caller.step));
+        tween(hotspot[get(interactive_img)].alpha, 0);    
+        inc(caller.step);
+        if(caller.step GT 3, 
+            set(caller.step, 1)
+        );
+        txtadd(interactive_img, 'interactive_area_', get(caller.step));
+        tween(hotspot[get(interactive_img)].alpha, 1, , , callwith(hotspot[get(caller.name)], anime_interactive););
+    </action>
+
+    <hotspot name='moving_hotspot_1' 
+        style='st_moving_hotspot'
+        ath="86.2690669489" atv="5.8504098605"
+        linkedscene='scene_7_2'
+        linkedlookat_h=''
+        linkedlookat_v=''
+    />
+
+    <hotspot name='next_chapter_btn' url='%CURRENTXML%/assets/common/next_chapter_btn.png'
+        style='st_next_chapter_btn|style_drag_hotspot_distortion'
+        ath="22.8626934132" atv="14.2019603756"
+    />
+</krpano>

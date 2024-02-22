@@ -1,0 +1,47 @@
+<krpano>
+    <include url='%CURRENTXML%/xml_ext/scene_layer_btn.xml' />
+    <events name='scene_3_3_event'
+        onnewpano='
+            delayedcall(1,
+                if(layer_btn_settings.autoplay,
+                    autoplay_indicator_start();
+                );
+            );
+            copy(layer[icon_count_text].html, calc("0 / 0"); );
+            check_all_scene();
+        '
+        onremovepano='stopdelayedcall(delayed_ani_1); pausesound(bgm);'
+    />
+    <include url="%CURRENTXML%/xml_ext/custom_skin.xml" />
+    
+    <action name='narration_start'>
+    </action>
+
+    <hotspot name='moving_hotspot_1' url='%CURRENTXML%/assets/common/back_btn.png'
+        style='st_moving_hotspot_2'
+        ath="85" atv="-2.2218838469"
+        linkedscene='scene_3_4'
+        linkedlookat_h='0'
+        linkedlookat_v='0'
+    />
+
+    <hotspot name='moving_hotspot_2' 
+        style='st_moving_hotspot'
+        ath="-90.6236063422" atv="12.1239942038"
+        linkedscene='scene_3_2'
+        linkedlookat_h='-150'
+        linkedlookat_v='0'
+    />
+
+    <hotspot name='icon_ext_4' 
+        style='st_icon_ext'
+        ath="6.7168658134" atv="10.2270443443"
+        idx='4'
+    />
+
+    <hotspot name='icon_ext_7' 
+        style='st_icon_ext'
+        ath="70.9141828142" atv="-12.3053110096"
+        idx='7'
+    />
+</krpano>
