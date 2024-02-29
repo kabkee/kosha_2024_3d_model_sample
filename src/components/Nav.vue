@@ -16,7 +16,7 @@ const route = useRoute();
                             <a href="#"
                                 class="block py-2 px-3 bg-blue-700 rounded md:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:text-blue-500"
                                 :class="{ 'text-blue-700': route.path=='/', 'text-black': route.path!=='/' }">
-                                테두리
+                                테두리-
                             </a>
                         </router-link>
                     </li>
